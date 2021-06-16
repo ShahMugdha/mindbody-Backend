@@ -163,4 +163,4 @@ const GetSalesResponse = new mongoose.Schema({
     }]
 })
 
-module.exports = mongoose.model('Sales',GetSalesResponse);
+module.exports = mongoose.model('Sales', GetSalesResponse);

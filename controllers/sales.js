@@ -4,7 +4,7 @@ const asyncHandler = require('../middleware/asyncHandler');
 const Sale = require('../models/Sale');
 const SaleService = require('../models/SaleService');
 
-const feedSale = asyncHandler((req, res) => {
+exports.feedSale = asyncHandler((req, res) => {
   var config = {
     method: 'get',
     url: 'https://api.mindbodyonline.com/public/v6/sale/sales?siteId=-99',
@@ -27,7 +27,7 @@ const feedSale = asyncHandler((req, res) => {
   });
 })
 
-const saleService = asyncHandler((req, res) => {
+exports.saleService = asyncHandler((req, res) => {
   var config = {
     method: 'get',
     url: 'https://api.mindbodyonline.com/public/v6/sale/services?siteId=-99',
@@ -42,13 +42,10 @@ const saleService = asyncHandler((req, res) => {
   .then(function (response) {
     const saleServiceData = response.data;    
     console.log(saleServiceData, "All Sales Services");
-    SaleService.insertMany(saleServiceData);
+    //SaleService.insertMany(saleServiceData);
     return res.json(response.data)
   })
   .catch(function (error) {
     console.log(error);
   });
 })
-
-module.exports = feedSale;
-module.exports = saleService;
