@@ -4,6 +4,8 @@ const hostname = 'localhost';
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const saleRouter = require('./routes/sales');
+const salesRepRouter = require('./routes/salesRep');
+const clientRouter = require('./routes/clients');
 const userRouter = require('./routes/user')
 const port = 5000;
 const authorize = require('./middleware/authorize');
@@ -28,6 +30,8 @@ app.use(bodyParser.json());
 app.use(cors());
 //app.use("/*", authorize);
 app.use('/sales', saleRouter);
+app.use('/sales-rep', salesRepRouter);
+app.use('/clients', clientRouter);
 app.use("/userToken", userRouter);
 
 const server = http.createServer(app);

@@ -12,7 +12,6 @@ exports.feedSale = asyncHandler((req, res) => {
       'Content-Type': 'application/json', 
       'Api-Key': 'd5ba29dfa59146c5b8fbb1cae12edaab', 
       'SiteId': '-99' 
-      //'Cookie': 'TS01334c2e=01c8c98c89920c36d8dbeefdf5411a1cff77ec9891a8df9245965bc7c154dd5706c19d215ac8ce609e1e2d7c80ba01bee21ca2b69f; __cflb=02DiuFkqqzCCQ4gSuJXWA5knzDBAED8cb3SNHsFcWbH2C',
     }
   };    
   axios(config)
@@ -35,7 +34,6 @@ exports.saleService = asyncHandler((req, res) => {
       'Content-Type': 'application/json', 
       'Api-Key': 'd5ba29dfa59146c5b8fbb1cae12edaab', 
       'SiteId': '-99' 
-      //'Cookie': 'TS01334c2e=01c8c98c89920c36d8dbeefdf5411a1cff77ec9891a8df9245965bc7c154dd5706c19d215ac8ce609e1e2d7c80ba01bee21ca2b69f; __cflb=02DiuFkqqzCCQ4gSuJXWA5knzDBAED8cb3SNHsFcWbH2C',
     }
   };    
   axios(config)

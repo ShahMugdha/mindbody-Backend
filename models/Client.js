@@ -1,21 +1,22 @@
 const mongoose = require('mongoose');
+const SalesRepresentative = require('./SalesRep');
 
 const paginationResponseSchema = new mongoose.Schema({
   RequestedLimit:{
-      type:Number,
-      default: 0
+    type:Number,
+    default: 0
   },
   RequestedOffset:{
-      type:Number,
-      default: 0
+    type:Number,
+    default: 0
   },
   PageSize:{
-      type:Number,
-      default: 0
+    type:Number,
+    default: 0
   },
   TotalResults:{
-      type:Number,
-      default: 0
+    type:Number,
+    default: 0
   }
 })
 
@@ -49,7 +50,7 @@ const CustomClientFieldValue = new mongoose.Schema({
   }
 })
 
-ClientCreditCard = new mongoose.Schema({
+const ClientCreditCard = new mongoose.Schema({
   Address: {
     type: String
   },
@@ -229,7 +230,8 @@ const ClientWithSuspensionInfo = new mongoose.Schema({
     default: true
   },
   SalesRep: [{
-    type: SalesRep
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'salesRep'
   }],
   Status: {
     type: String,
