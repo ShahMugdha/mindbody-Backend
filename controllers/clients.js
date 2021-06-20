@@ -25,7 +25,15 @@ exports.feedClient = asyncHandler((req, res) => {
   });
 })
 
-exports.addClient = asyncHandler((req, res) => {
+exports.addClient = asyncHandler(async(req, res) => {
+  const { FirstName, LastName, Email } = req.body;
+  /* const createClient = new Client({
+    FirstName: FirstName,
+    LastName: LastName,
+    Email: Email
+  }); 
+  //await createClient.save();
+	console.log(createClient, "create"); */
   var config = {
     method: 'post',
     url: 'https://api.mindbodyonline.com/public/v6/client/addclient?siteId=-99',
@@ -33,22 +41,18 @@ exports.addClient = asyncHandler((req, res) => {
       'Content-Type': 'application/json', 
       'Api-Key': 'd5ba29dfa59146c5b8fbb1cae12edaab', 
       'SiteId': '-99' 
+    },
+    data: {
+      "FirstName": FirstName,
+      "LastName": LastName,
+      "Email": Email
     }
   };    
   axios(config)
   .then(function (response) {
-    const { FirstName, LastName, Email } = req.body;
-    const createClient = new Client({
-      FirstName: FirstName,
-      LastName: LastName,
-      Email: Email
-    });
-    console.log(createClient, "add client fields")
-    const client = createClient.save();
-    if(!client) {
-      return next(new ErrorResponse("Error creating client", 404));
-    }
-    const clientData = response.data;    
+    const clientData = response.data;  
+    const client = new Client(clientData);
+    client.save();
     console.log(clientData, "Added Client");
     return res.json(response.data)
   })

@@ -4,7 +4,7 @@ const asyncHandler = require('../middleware/asyncHandler');
 const Sale = require('../models/Sale');
 const SaleService = require('../models/SaleService');
 
-exports.feedSale = asyncHandler((req, res) => {
+exports.feedSale = asyncHandler((res) => {
   var config = {
     method: 'get',
     url: 'https://api.mindbodyonline.com/public/v6/sale/sales?siteId=-99',

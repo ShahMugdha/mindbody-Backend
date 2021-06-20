@@ -229,7 +229,7 @@ const ClientWithSuspensionInfo = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  SalesRep: [{
+  SalesReps: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'salesRep'
   }],
