@@ -24,3 +24,11 @@ exports.feedStaff = asyncHandler((req, res) => {
     console.log(error);
   });
 })
+
+exports.getStaff = asyncHandler(async(req, res, next) => {
+  const allStaff = await Staff.find();
+	if (!allStaff) {
+		return next(new ErrorResponse("Error Retriving Staff", 404));
+	}
+	return res.status(200).json({ success: true, result: allStaff });
+})

@@ -4,7 +4,7 @@ const asyncHandler = require('../middleware/asyncHandler');
 const Sale = require('../models/Sale');
 const SaleService = require('../models/SaleService');
 
-exports.feedSale = asyncHandler((res) => {
+exports.feedSale = asyncHandler((req, res) => {
   var config = {
     method: 'get',
     url: 'https://api.mindbodyonline.com/public/v6/sale/sales?siteId=-99',
@@ -26,7 +26,15 @@ exports.feedSale = asyncHandler((res) => {
   });
 })
 
-exports.saleService = asyncHandler((req, res) => {
+exports.getSales = asyncHandler(async(req, res, next) => {
+  const allSales = await Sale.find();
+	if (!allSales) {
+		return next(new ErrorResponse("Error Retriving Sales", 404));
+	}
+	return res.status(200).json({ success: true, result: allSales });
+})
+
+exports.saleService = asyncHandler((res) => {
   var config = {
     method: 'get',
     url: 'https://api.mindbodyonline.com/public/v6/sale/services?siteId=-99',
@@ -38,7 +46,7 @@ exports.saleService = asyncHandler((req, res) => {
   };    
   axios(config)
   .then(function (response) {
-    const saleServiceData = response.data;    
+    const saleServiceData = response.data.Sales;    
     console.log(saleServiceData, "All Sales Services");
     //SaleService.insertMany(saleServiceData);
     return res.json(response.data)

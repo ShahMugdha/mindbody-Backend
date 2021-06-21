@@ -61,8 +61,7 @@ function print(path, layer) {
 	}
 }
 app._router.stack.forEach(print.bind(null, []));
-const server = http.createServer(app);
 
-server.listen(port, hostname, () => {
+app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}`);
 });
