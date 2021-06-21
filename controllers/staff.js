@@ -15,10 +15,10 @@ exports.feedStaff = asyncHandler((req, res) => {
   };    
   axios(config)
   .then(function (response) {
-    const staffData = response.data;    
-    console.log(staffData, "All Staff");
+    const staffData = response.data.StaffMembers;    
     //Staff.insertMany(staffData);
-    return res.json(response.data)
+    console.log(staffData, "All Staff");
+    return res.json({ success: true, result: staffData });
   })
   .catch(function (error) {
     console.log(error);

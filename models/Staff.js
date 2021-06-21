@@ -1,40 +1,34 @@
 const mongoose = require('mongoose');
 
-const paginationResponseSchema = new mongoose.Schema({
-  RequestedLimit:{
-    type:Number,
-    default: 0
-  },
-  RequestedOffset:{
-    type:Number,
-    default: 0
-  },
-  PageSize:{
-    type:Number,
-    default: 0
-  },
-  TotalResults:{
-    type:Number,
-    default: 0
-  }
-})
-
-const avaibilitiesSchema = new mongoose.Schema({
-  Id: Number,
-  Location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'locations'
-  }
-})
-
 const staffSchema = new mongoose.Schema({
-  PaginationResponse: {
-    type: paginationResponseSchema
+  Id: {
+    type: Number
   },
-  Staff: [{
-    Id: Number,
-    avaibilities: avaibilitiesSchema
+  Address: {
+    type: String
+  },
+  Bio: {
+    type: String
+  },
+  City: {
+    type: String
+  },
+  FirstName: {
+    type: String
+  },
+  ImageUrl: {
+    type: String
+  },
+  avaibilities: [{
+    Id: {
+      type: Number
+    },
+    Location: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'locations'
+    }
   }]
 })
 
-module.exports = mongoose.model('staff', staffSchema);
+const Staff = mongoose.model('staff', staffSchema);
+module.exports = Staff;

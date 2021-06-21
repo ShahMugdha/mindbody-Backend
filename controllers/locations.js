@@ -16,13 +16,8 @@ exports.feedLocation = asyncHandler((req, res, next) => {
   axios(config)
   .then(function (response) {
     const locationData = response.data.Locations; 
-    //const locationData = new Location(response.data.Locations)   
-    Location.insertMany(locationData);
-    //const location = locationData.save();
+    //Location.insertMany(locationData);
     console.log(locationData, "All Locations");
-    /* if (!location) {
-      return next(new ErrorResponse("Error creating locations", 404));
-    } */
     return res.json({ success: true, result: response.data.Locations });
   })
   .catch(function (error) {
